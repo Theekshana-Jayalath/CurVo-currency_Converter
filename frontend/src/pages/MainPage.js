@@ -65,25 +65,25 @@ function CurrencySelect({ value, onChange, currencies, placeholder, label }) {
   const flagUrl = getFlagUrl(value);
 
   return (
-    <div className="relative" ref={ref}>
-      <label className="block text-sm font-medium text-slate-300 mb-2">{label}</label>
+    <div className="relative w-full" ref={ref}>
+      <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1 sm:mb-2">{label}</label>
 
       <button
         type="button"
         onClick={() => { setOpen(!open); setSearch(""); }}
-        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 appearance-none cursor-pointer text-left flex items-center gap-3"
+        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 appearance-none cursor-pointer text-left flex items-center gap-2 sm:gap-3 text-sm sm:text-base"
       >
-        <div className="flex-shrink-0 w-7 h-5 flex items-center justify-center">
+        <div className="flex-shrink-0 w-6 h-4 sm:w-7 sm:h-5 flex items-center justify-center">
           {flagUrl
-            ? <img src={flagUrl} alt={value} className="w-7 h-5 object-cover rounded-sm" />
-            : <span className="text-slate-400 text-lg">🏳️</span>
+            ? <img src={flagUrl} alt={value} className="w-6 h-4 sm:w-7 sm:h-5 object-cover rounded-sm" />
+            : <span className="text-slate-400 text-base sm:text-lg">🏳️</span>
           }
         </div>
-        <span className={selectedName ? "text-white flex-1" : "text-slate-400 flex-1"}>
+        <span className={selectedName ? "text-white flex-1 truncate" : "text-slate-400 flex-1 truncate"}>
           {selectedName ? `${value} - ${selectedName}` : placeholder}
         </span>
         <span className="flex-shrink-0">
-          <svg className={`w-4 h-4 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className={`w-3 h-3 sm:w-4 sm:h-4 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </span>
@@ -113,16 +113,16 @@ function CurrencySelect({ value, onChange, currencies, placeholder, label }) {
                     key={c}
                     type="button"
                     onClick={() => { onChange(c); setOpen(false); setSearch(""); }}
-                    className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-white/10 transition text-left ${value === c ? "bg-emerald-500/20 text-emerald-400" : "text-white"}`}
+                    className={`w-full flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm hover:bg-white/10 transition text-left ${value === c ? "bg-emerald-500/20 text-emerald-400" : "text-white"}`}
                   >
-                    <div className="flex-shrink-0 w-7 h-5 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-6 h-4 sm:w-7 sm:h-5 flex items-center justify-center">
                       {url
-                        ? <img src={url} alt={c} className="w-7 h-5 object-cover rounded-sm" />
+                        ? <img src={url} alt={c} className="w-6 h-4 sm:w-7 sm:h-5 object-cover rounded-sm" />
                         : <span className="text-base">🏳️</span>
                       }
                     </div>
-                    <span className="font-medium">{c}</span>
-                    <span className="text-slate-400 truncate flex-1">{currencies[c]}</span>
+                    <span className="font-medium text-xs sm:text-sm">{c}</span>
+                    <span className="text-slate-400 truncate flex-1 text-xs sm:text-sm">{currencies[c]}</span>
                   </button>
                 );
               })
@@ -163,7 +163,6 @@ export default function MainPage() {
   };
 
   const handleRefresh = () => {
-    // Reset all form fields and result
     setDate("");
     setSourceCurrency("");
     setTargetCurrency("");
@@ -192,25 +191,25 @@ export default function MainPage() {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Header */}
-      <div className="flex-shrink-0 border-b border-white/10 bg-white/5 backdrop-blur-sm">
-        <div className="max-w-5xl mx-auto px-6 py-4">
-          <span className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+      <div className="flex-shrink-0 border-b border-white/10 bg-white/5 backdrop-blur-sm sticky top-0 z-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <span className="text-base sm:text-xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
             CurVo-Currency Converter
           </span>
         </div>
       </div>
 
       {/* Main */}
-      <div className="flex-1 flex flex-col justify-center overflow-hidden">
-        <div className="max-w-5xl mx-auto px-6 py-4 w-full">
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-8 w-full">
           {/* Hero */}
-          <div className="text-center mb-4">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+          <div className="text-center mb-4 sm:mb-6">
+            <h1 className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-2 mt-10">
               Convert Your Currency Today
             </h1>
-            <p className="text-slate-300 text-sm max-w-2xl mx-auto">
+            <p className="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto px-2 mt-10">
               Welcome to Convert Your Currency Today 🌍💱<br />
               Quickly and easily convert currencies with real-time exchange rates.
               Simple, fast, and reliable — start converting in seconds! ✨
@@ -218,37 +217,37 @@ export default function MainPage() {
           </div>
 
           {/* Card */}
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl">
-            <div className="p-6 md:p-8">
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl mt-10">
+            <div className="p-4 sm:p-6 md:p-8">
               <form onSubmit={handleSubmit}>
                 {/* Row 1: Date + Amount */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Exchange Date</label>
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mb-5">
+                  <div className="flex-1">
+                    <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1 sm:mb-2">Exchange Date</label>
                     <input
                       type="date"
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
                       max={new Date().toISOString().split('T')[0]}
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white/10 border border-white/20 rounded-xl text-white text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
                       required
                     />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Amount to Convert</label>
+                  <div className="flex-1">
+                    <label className="block text-xs sm:text-sm font-medium text-slate-300 mb-1 sm:mb-2">Amount to Convert</label>
                     <input
                       type="number"
                       value={amountInSourceCurrency}
                       onChange={(e) => setAmountInSourceCurrency(e.target.value)}
                       placeholder="0.00"
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
                       required
                     />
                   </div>
                 </div>
 
-                {/* Row 2: From + Swap + To */}
-                <div className="flex items-end gap-3 mb-5">
+                {/* Row 2: From + Swap + To - Mobile responsive */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-3 mb-5">
                   <div className="flex-1">
                     <CurrencySelect
                       label="From"
@@ -259,15 +258,17 @@ export default function MainPage() {
                     />
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={handleSwap}
-                    className="w-12 h-12 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/50 text-emerald-400 flex items-center justify-center transition-all hover:scale-105 mb-0.5 flex-shrink-0"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                    </svg>
-                  </button>
+                  <div className="flex justify-center sm:justify-start">
+                    <button
+                      type="button"
+                      onClick={handleSwap}
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/50 text-emerald-400 flex items-center justify-center transition-all hover:scale-105 flex-shrink-0 self-center sm:self-end mb-0"
+                    >
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                      </svg>
+                    </button>
+                  </div>
 
                   <div className="flex-1">
                     <CurrencySelect
@@ -285,11 +286,11 @@ export default function MainPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold rounded-xl transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg"
+                    className="w-full py-3 sm:py-3.5 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold rounded-xl transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg text-sm sm:text-base"
                   >
                     {loading ? (
                       <span className="flex items-center justify-center gap-2">
-                        <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin h-4 w-4 sm:h-5 sm:w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
@@ -306,9 +307,9 @@ export default function MainPage() {
                   <button
                     type="button"
                     onClick={handleRefresh}
-                    className="w-full py-3.5 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold rounded-xl transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2"
+                    className="w-full py-3 sm:py-3.5 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold rounded-xl transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base"
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </svg>
                     New Conversion
@@ -319,21 +320,21 @@ export default function MainPage() {
               {/* Error */}
               {error && (
                 <div className="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
-                  <p className="text-red-400 text-sm text-center">{error}</p>
+                  <p className="text-red-400 text-xs sm:text-sm text-center">{error}</p>
                 </div>
               )}
 
               {/* Result - without flags */}
               {amountInTargetCurrency !== null && (
-                <div className="mt-4 p-4 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 rounded-xl">
-                  <p className="text-slate-300 text-sm text-center mb-2">
+                <div className="mt-4 p-3 sm:p-4 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 rounded-xl">
+                  <p className="text-slate-300 text-xs sm:text-sm text-center mb-1 sm:mb-2">
                     {amountInSourceCurrency} {sourceCurrency} =
                   </p>
-                  <p className="text-2xl md:text-3xl font-bold text-center text-emerald-400">
+                  <p className="text-lg sm:text-2xl md:text-3xl font-bold text-center text-emerald-400">
                     {Number(amountInTargetCurrency).toLocaleString("en-US", {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
-                    })} <span className="text-white text-lg">{targetCurrency}</span>
+                    })} <span className="text-white text-base sm:text-lg">{targetCurrency}</span>
                   </p>
                 </div>
               )}
@@ -341,8 +342,8 @@ export default function MainPage() {
           </div>
 
           {/* Footer */}
-          <div className="text-center mt-4 pt-3 border-t border-white/10">
-            <p className="text-slate-400 text-sm">CurVo © 2026 CurVo. All rights reserved.</p>
+          <div className="text-center mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-white/10">
+            <p className="text-slate-400 text-xs sm:text-sm">CurVo © 2026 CurVo. All rights reserved.</p>
           </div>
         </div>
       </div>
