@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/CurVo-currency_Converter/static/css/main.80496d4c.css",
+    "main.js": "/CurVo-currency_Converter/static/js/main.5ce825cc.js",
+    "index.html": "/CurVo-currency_Converter/index.html",
+    "main.80496d4c.css.map": "/CurVo-currency_Converter/static/css/main.80496d4c.css.map",
+    "main.5ce825cc.js.map": "/CurVo-currency_Converter/static/js/main.5ce825cc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.80496d4c.css",
+    "static/js/main.5ce825cc.js"
+  ]
+}
