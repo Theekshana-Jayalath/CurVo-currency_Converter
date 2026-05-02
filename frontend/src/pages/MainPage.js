@@ -229,6 +229,7 @@ export default function MainPage() {
                       type="date"
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
+                      max={new Date().toISOString().split('T')[0]}
                       className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
                       required
                     />
