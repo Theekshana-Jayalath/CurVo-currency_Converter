@@ -150,7 +150,8 @@ export default function MainPage() {
     setError("");
     setAmountInTargetCurrency(null);
     try {
-      const response = await axios.get("http://localhost:5000/convert", {
+      const apiUrl = process.env.REACT_APP_API_URL || "/_backend";
+      const response = await axios.get(`${apiUrl}/convert`, {
         params: { date, sourceCurrency, targetCurrency, amountInSourceCurrency },
       });
       setAmountInTargetCurrency(response.data);
@@ -180,7 +181,8 @@ export default function MainPage() {
   useEffect(() => {
     const getCurrencyNames = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/getAllCurrencies");
+        const apiUrl = process.env.REACT_APP_API_URL || "/_backend";
+        const response = await axios.get(`${apiUrl}/getAllCurrencies`);
         const data = response.data;
         setCurrencyNames(data);
       } catch (err) {
