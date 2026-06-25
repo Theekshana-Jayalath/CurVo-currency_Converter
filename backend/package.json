@@ -1,9 +1,9 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Currency Converter Backend",
   "type": "module",
+  "main": "src/index.js",
   "scripts": {
     "start": "nodemon src/index.js"
   },
